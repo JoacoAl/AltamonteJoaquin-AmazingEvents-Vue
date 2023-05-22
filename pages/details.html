@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../assets/style/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/images/favicon .png"
+      type="image/x-icon"
+    />
+    <title>Amazing Events - Details</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg" style="background-color: #ec8cbe">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              class="logo-header"
+              src="../assets/images/Logo Amazing Events.png"
+              alt="logo"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse nav-flex navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item text-center">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="../index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./upcoming-events.html"
+                  >Upcoming Events</a
+                >
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./past-events.html">Past Events</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./contact.html">Contact</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./stats.html">Stats</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main
+      id="app"
+      class="mainStats d-flex flex-column justify-content-center align-items-center"
+    >
+      <article
+        id="article-details"
+        class="d-flex flex-column col-12 justify-content-center col-lg-12 col-xl-12 gap-2 flex-lg-row justify-content-lg-center"
+      >
+      <div class="d-flex justify-content-center div-details" >
+        <img
+          class="image-details"
+          v-bind:src="eventoQueCoincidePorID.image"
+          alt="Books"
+        />
+        </div>
+        <div class="flip-card">
+        <div class="flip-card-inner p-2">
+          <div class="flip-card-front">
+            <p class="title">{{eventoQueCoincidePorID.name}}</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="title">DETAILS</p>
+            <p class="textDetail">
+              {{eventoQueCoincidePorID.description}}</p>
+            <p class="textDetail"><span class="spanDetails">Date</span>: {{
+              eventoQueCoincidePorID.date
+            }}</p>
+            <p class="textDetail"><span class="spanDetails">Category</span> : {{
+              eventoQueCoincidePorID.category
+            }}</p>
+            <p class="textDetail"><span class="spanDetails">Place</span> : {{
+              eventoQueCoincidePorID.place
+            }}</p>
+            <p class="textDetail"><span class="spanDetails">Capacity</span> : {{
+              eventoQueCoincidePorID.capacity
+            }}</p>
+            <p class="textDetail">
+              <span v-if="eventoQueCoincidePorID.assistance"><span class="spanDetails">Assistance</span> :  {{eventoQueCoincidePorID.assistance}}</span>
+              <span v-else-if="eventoQueCoincidePorID.estimate"><span class="spanDetails">Estimate</span> : {{eventoQueCoincidePorID.estimate}}</span>
+            </p>
+            <p class="textDetail"><span class="spanDetails">Price</span>: ${{
+              eventoQueCoincidePorID.price
+            }}</p>
+        </div> 
+          </div>
+        </div>
+        </div>
+    </article>
+    </main>
+    <!-- FOOTER -->
+    <footer
+      class="d-flex justify-content-between align-items-center"
+      style="background-color: #ddc2ff"
+    >
+      <div class="mx-2">
+        <a href="https://www.instagram.com">
+          <img
+            class="logo-footer"
+            src="../assets/images/instagram.png"
+            alt="instagram"
+        /></a>
+        <a href="https://www.facebook.com/home.php">
+          <img
+            class="logo-footer"
+            src="../assets/images/facebook.png"
+            alt="facebook"
+          />
+        </a>
+        <a href="https://web.whatsapp.com">
+          <img
+            class="logo-footer"
+            src="../assets/images/whatsapp.png"
+            alt="whatsapp"
+          />
+        </a>
+      </div>
+      <h2 class="mx-2">Cohort 47 Joaquin Altamonte</h2>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../script/details.js"></script>
+  </body>
+</html>

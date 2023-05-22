@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../assets/style/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/images/favicon1.png"
+      type="image/x-icon"
+    />
+    <title>Amazing Events - Upcoming Events</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg" style="background-color: #ec8cbe">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              class="logo-header"
+              src="../assets/images/Logo Amazing Events.png"
+              alt="logo"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse nav-flex navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item text-center">
+                <a class="nav-link" aria-current="page" href="../index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link upeventsnav" href="#">Upcoming Events</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./past-events.html">Past Events</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./contact.html">Contact</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link" href="./stats.html">Stats</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="app">
+      <!-- CAROUSEL -->
+      <section class="my-3">
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carrosuel-title active">
+              <h2 class="carousel-title">Upcoming Events</h2>
+            </div>
+          </div>
+          <a
+            href="../index.html"
+            class="carousel-control-prev"
+            type="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Back</span>
+          </a>
+          <a
+            href="./past-events.html"
+            class="carousel-control-next"
+            type="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
+      </section>
+      <!-- CHECKBOX -->
+      {{filtroCombinados}}
+      <section
+        class="d-flex flex-wrap checkbox-direction justify-content-center section-category flex-sm-row-reverse flex-sm-wrap align-items-sm-center"
+      >
+        <form
+          class="my-1 row d-flex justify-content-center col-lg-8"
+          role="search"
+        >
+          <input
+            v-model="textoIngresado"
+            class="form-control w-75 col-3 search-bar"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            id="buscarPorTexto"
+          />
+          <button class="btn btn-primary col-3" type="submit">Search</button>
+        </form>
+        <div
+          class="d-flex flex-wrap checkbox-direction gap-3 checkbox-category justify-content-center"
+          id="contenedorCheckbox"
+        >
+          <div
+            v-for="categorias of categoriasSinDuplicar"
+            class="form-check d-flex align-items-start mx-1"
+          >
+            <input
+              class="form-check-input"
+              v-model="checkboxChecked"
+              type="checkbox"
+              v-bind:value="categorias"
+              v-bind:id="categorias"
+            />
+            <label
+              class="form-check-label text-light label-checks"
+              v-bind:for="categorias"
+            >
+              {{categorias}}</label
+            >
+          </div>
+        </div>
+      </section>
+      <!-- CARDS -->
+      <section
+        id="section-cards-dom"
+        class="d-flex align-items-center fcard-sectzion flex-wrap flex-md-row justify-content-center align-items-center gap-1 section-cards my-5"
+      >
+        <div
+          v-if="eventosFiltrados.length != 0 "
+          class="card"
+          style="width: 18rem"
+          v-for="evento of eventosFiltrados"
+        >
+          <img
+            v-bind:src="evento.image"
+            class="card-img-top img-cards"
+            alt="cine"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{evento.name}}</h5>
+            <p class="card-text">{{evento.description}}</p>
+          </div>
+          <div
+            class="divPrice card-body d-flex justify-content-between text-center align-items-center"
+          >
+            <p class="my-2">Price: ${{evento.price}}</p>
+            <a
+              v-bind:href="'pages/details.html?id='+evento._id"
+              class="card-link"
+            >
+              <button
+                type="button"
+                class="btn seeMore"
+                style="background-color: #ddc2ff"
+              >
+                Show More
+              </button>
+            </a>
+          </div>
+        </div>
+        <h3 v-else class="h3-noresults">No result found for your search</h3>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <footer
+      class="d-flex justify-content-between align-items-center"
+      style="background-color: #ddc2ff"
+    >
+      <div class="mx-2">
+        <a href="https://www.instagram.com">
+          <img
+            class="logo-footer"
+            src="../assets/images/instagram.png"
+            alt="instagram"
+        /></a>
+        <a href="www.facebook.com">
+          <img
+            class="logo-footer"
+            src="../assets/images/facebook.png"
+            alt="facebook"
+          />
+        </a>
+        <a href="https://www.facebook.com/home.php">
+          <img
+            class="logo-footer"
+            src="../assets/images/whatsapp.png"
+            alt="whatsapp"
+          />
+        </a>
+      </div>
+      <h4 class="mx-2">Cohort 47 Joaquin Altamonte</h4>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../script/upcomingEvents.js"></script>
+  </body>
+</html>
